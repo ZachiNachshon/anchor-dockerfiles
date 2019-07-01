@@ -1,0 +1,33 @@
+# OVERVIEW
+# --------
+# This is the Dockerfile for placeholder
+#
+# REQUIRED BASE IMAGE TO BUILD THIS IMAGE
+# ---------------------------------------
+# None.
+#
+# REQUIRED FILES TO BUILD THIS IMAGE
+# ----------------------------------
+# (1) None.
+#
+# HOW TO BUILD THIS IMAGE
+# -----------------------
+# docker build -f Dockerfile \
+#              -t ${NAMESPACE}/placeholder:${TAG} \
+#              .
+#
+# HOW TO RUN THIS CONTAINER
+# -------------------------
+# docker run -t -d \
+#            --name=${NAMESPACE}-placeholder \
+#            ${NAMESPACE}/placeholder:${TAG}
+#
+# HOW TO TAG THIS IMAGE
+# ---------------------
+# docker tag ${NAMESPACE}/placeholder:${TAG} \
+#            ${REGISTRY}/${NAMESPACE}/placeholder:${TAG}
+#
+# HOW TO PUSH THIS IMAGE
+# ----------------------
+# docker push ${REGISTRY}/${NAMESPACE}/placeholder:${TAG}
+#

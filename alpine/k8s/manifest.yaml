@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ${NAMESPACE}-alpine
+  name: ${NAMESPACE}-alpine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ${NAMESPACE}-alpine
+  template:
+    metadata:
+      labels:
+        app: ${NAMESPACE}-alpine
+    spec:
+      containers:
+        - image: ${REGISTRY}/${NAMESPACE}/alpine:${TAG}
+          name: ${NAMESPACE}-alpine
+          imagePullPolicy: IfNotPresent
+          resources: {}
+          command: ["sleep", "900"]
