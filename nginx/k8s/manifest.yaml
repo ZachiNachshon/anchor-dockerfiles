@@ -1,3 +1,7 @@
+# HOW TO EXPOSE THIS MANIFEST
+# ---------------------------
+# kubectl port-forward -n default deployment/${NAMESPACE}-nginx 1234:80
+#
 apiVersion: apps/v1
 kind: Deployment
 metadata:
