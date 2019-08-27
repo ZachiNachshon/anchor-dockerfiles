@@ -1,6 +1,6 @@
 # OVERVIEW
 # --------
-# This is the Dockerfile for alpine
+# This is the Dockerfile for centos base image distribution
 #
 # REQUIRED BASE IMAGE TO BUILD THIS IMAGE
 # ---------------------------------------
@@ -13,25 +13,25 @@
 # HOW TO BUILD THIS IMAGE
 # -----------------------
 # docker build -f Dockerfile \
-#              -t ${NAMESPACE}/alpine:${TAG} \
+#              -t ${NAMESPACE}/centos:${TAG} \
 #              .
 #
 # HOW TO RUN THIS CONTAINER
 # -------------------------
 # docker run -t -d \
-#            --name=${NAMESPACE}-alpine \
-#            ${NAMESPACE}/alpine:${TAG}
+#            --name=${NAMESPACE}-centos \
+#            ${NAMESPACE}/centos:${TAG}
 #
 # HOW TO TAG THIS IMAGE
 # ---------------------
-# docker tag ${NAMESPACE}/alpine:${TAG} \
-#            ${REGISTRY}/${NAMESPACE}/alpine:${TAG}
+# docker tag ${NAMESPACE}/centos:${TAG} \
+#            ${REGISTRY}/${NAMESPACE}/centos:${TAG}
 #
 # HOW TO PUSH THIS IMAGE
 # ----------------------
-# docker push ${REGISTRY}/${NAMESPACE}/alpine:${TAG}
+# docker push ${REGISTRY}/${NAMESPACE}/centos:${TAG}
 #
-FROM alpine:latest
+FROM centos:7
 LABEL maintainer="Zachi Nachshon <zachi.nachshon@gmail.com>"
 
-CMD /bin/sh
+CMD /bin/bash

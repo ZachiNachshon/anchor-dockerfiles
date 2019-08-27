@@ -1,0 +1,54 @@
+# HOW TO EXPOSE THIS MANIFEST
+# ---------------------------
+# None.
+#
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox
+  namespace: ${NAMESPACE}
+  labels:
+    app: busybox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: busybox
+  template:
+    metadata:
+      labels:
+        app: busybox
+    spec:
+      nodeSelector:
+        busybox: anchor-stateful
+      containers:
+        - name: busybox
+          image: gcr.io/google_containers/busybox:1.24
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: TEST_ENV
+              value: "hello"
+          command:
+            - "/bin/sh"
+          args:
+            - "-c"
+            # Add timestamp to a file every 10 sec
+            - "watch -n 10 \"(date '+TIME:%H:%M:%S') | tee -a /etc/mount-from-pod/busybox-out.txt\" "
+            # Create a timestamp directory every 10 sec
+#            - "watch -n 30 'sh -c \"mkdir /etc/mount-from-pod/$(date +%H:%M:%S)\"' "
+          volumeMounts:
+            - name: busybox-data
+              mountPath: /etc/mount-from-pod
+      volumes:
+        - name: busybox-data
+          hostPath:
+            path: /opt/stateful/busybox

@@ -1,0 +1,32 @@
+# OVERVIEW
+# --------
+# This is the Dockerfile for N/A
+# (see https://hub.docker.com/_/image-name)
+#
+# REQUIRED BASE IMAGE TO BUILD THIS IMAGE
+# ---------------------------------------
+# This Dockerfile requires the base image company/name:version
+# (see https://hub.docker.com/_/base-image-name)
+#
+# REQUIRED FILES TO BUILD THIS IMAGE
+# ----------------------------------
+# (1) some_file_on_docker_context_dir.zip
+#
+#     Description regarding required file.
+#
+# HOW TO BUILD THIS IMAGE
+# -----------------------
+# docker build ...
+#
+# HOW TO RUN THIS CONTAINER
+# -------------------------
+# docker run ...
+#
+# HOW TO TAG THIS IMAGE
+# ---------------------
+# docker tag ...
+#
+# HOW TO PUSH THIS IMAGE
+# ----------------------
+# docker push ...
+#

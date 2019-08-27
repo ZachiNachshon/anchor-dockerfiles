@@ -1,6 +1,6 @@
 # OVERVIEW
 # --------
-# This is the Dockerfile for placeholder
+# This is the Dockerfile for nginx
 #
 # REQUIRED BASE IMAGE TO BUILD THIS IMAGE
 # ---------------------------------------
@@ -13,21 +13,25 @@
 # HOW TO BUILD THIS IMAGE
 # -----------------------
 # docker build -f Dockerfile \
-#              -t ${NAMESPACE}/placeholder:${TAG} \
+#              -t ${NAMESPACE}/nginx:${TAG} \
 #              .
 #
 # HOW TO RUN THIS CONTAINER
 # -------------------------
 # docker run -t -d \
-#            --name=${NAMESPACE}-placeholder \
-#            ${NAMESPACE}/placeholder:${TAG}
+#            -v ${HOME}/.nginx/nginx.conf:/etc/nginx/nginx:ro \
+#            --name=${NAMESPACE}-nginx \
+#            -p ${NGINX_PORT}:80 \
+#            ${NAMESPACE}/nginx:${TAG}
 #
 # HOW TO TAG THIS IMAGE
 # ---------------------
-# docker tag ${NAMESPACE}/placeholder:${TAG} \
-#            ${REGISTRY}/${NAMESPACE}/placeholder:${TAG}
+# docker tag ${NAMESPACE}/nginx:${TAG} \
+#            ${REGISTRY}/${NAMESPACE}/nginx:${TAG}
 #
 # HOW TO PUSH THIS IMAGE
 # ----------------------
-# docker push ${REGISTRY}/${NAMESPACE}/placeholder:${TAG}
+# docker push ${REGISTRY}/${NAMESPACE}/nginx:${TAG}
 #
+FROM nginx:latest
+LABEL maintainer="Zachi Nachshon <zachi.nachshon@gmail.com>"

@@ -1,6 +1,6 @@
 # OVERVIEW
 # --------
-# This is the Dockerfile for nginx
+# This is the Dockerfile for Jenkins master
 #
 # REQUIRED BASE IMAGE TO BUILD THIS IMAGE
 # ---------------------------------------
@@ -13,25 +13,26 @@
 # HOW TO BUILD THIS IMAGE
 # -----------------------
 # docker build -f Dockerfile \
-#              -t ${NAMESPACE}/nginx:${TAG} \
+#              -t ${NAMESPACE}/jenkins:${TAG} \
 #              .
 #
 # HOW TO RUN THIS CONTAINER
 # -------------------------
 # docker run -t -d \
-#            -v ${HOME}/.nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
-#            --name=${NAMESPACE}-nginx \
-#            -p 8080:80 \
-#            ${NAMESPACE}/nginx:${TAG}
+#            -v "${HOME}/.jenkins:/var/jenkins_home" \
+#            -p ${JENKINS_PORT}:8080/tcp \
+#            --restart always \
+#            --name=${NAMESPACE}-jenkins \
+#            ${NAMESPACE}/jenkins:${TAG}
 #
 # HOW TO TAG THIS IMAGE
 # ---------------------
-# docker tag ${NAMESPACE}/nginx:${TAG} \
-#            ${REGISTRY}/${NAMESPACE}/nginx:${TAG}
+# docker tag ${NAMESPACE}/jenkins:${TAG} \
+#            ${REGISTRY}/${NAMESPACE}/jenkins:${TAG}
 #
 # HOW TO PUSH THIS IMAGE
 # ----------------------
-# docker push ${REGISTRY}/${NAMESPACE}/nginx:${TAG}
+# docker push ${REGISTRY}/${NAMESPACE}/jenkins:${TAG}
 #
-FROM nginx:latest
+FROM jenkins/jenkins:2.189
 LABEL maintainer="Zachi Nachshon <zachi.nachshon@gmail.com>"
